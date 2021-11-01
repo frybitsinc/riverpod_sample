@@ -1,4 +1,4 @@
-# munto_sample
+# riverpod_sample
 
 A new Flutter project.
 
