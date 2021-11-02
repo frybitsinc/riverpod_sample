@@ -35,7 +35,7 @@ class HomeView extends HookWidget {
       return context.read(memosViewController).dispose;
     }, []);
 
-    final List<Memo> memos = [];//useProvider(_totalMemos).state;
+    final List<Memo> memos = useProvider(sortedMemos).state;
 
     if (memos.isEmpty) {
       return Container(child: const Center(child: CircularProgressIndicator()));
@@ -70,7 +70,11 @@ class HomeView extends HookWidget {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
-
+          if(currentPage==MAX_PAGE){
+            return;
+          }
+          currentPage++;
+          context.read(memosViewController).loadMoreMemo(currentPage);
         },
       ),
     );
